@@ -1,4 +1,3 @@
-const { model } = require("mongoose");
 const categoryModel = require ("../models/Category.model");
 
 const dbInsertCategory = async (newCategory) => {
@@ -14,8 +13,22 @@ const dbGetCategories = async() => {
     return await categoryModel.find ()
 }
 
+const dbupdateCategory = async (id, updateCategory) => {
+    return await categoryModel.findOneAndUpdate (
+        {_id:id},
+        updateCategory,
+        {new: true}
+    );
+}
+
+const dbGetCategoryById = async ( _id ) => {
+    return await categoryModel.findOne({ _id });
+}
+
 
 module.exports = {
     dbInsertCategory,
-    dbGetCategories
+    dbGetCategories,
+    dbupdateCategory,
+    dbGetCategoryById
 }
