@@ -1,6 +1,6 @@
-const { Schema, model } = require( "monngoose" );
+const { Schema, model } = require( "mongoose" );
 
-const DeliverSchema = new Schema({
+const billSchema = new Schema({
     nombres: {
         type: String,
         required: true
@@ -11,6 +11,7 @@ const DeliverSchema = new Schema({
     },
     id: {
         type: Number,
+        unique: true,
         required: true
     },
     email: {
@@ -32,15 +33,19 @@ const DeliverSchema = new Schema({
     informacion: {
         type: String,
         required: true
+    },
+    idusuario: {
+        type: Schema.Types.ObjectId,
+        ref: "users"
     }
 }, {
     timestamps: true
 });
 
-const DeliverModel = model(
-    "deliveries",
-    DeliverSchema
+const billModel = model(
+    "bills",
+    billSchema
 );
 
-module.exports = DeliverModel
+module.exports = billModel;
 
