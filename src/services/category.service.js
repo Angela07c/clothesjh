@@ -25,10 +25,15 @@ const dbGetCategoryById = async ( _id ) => {
     return await categoryModel.findOne({ _id });
 }
 
+const dbDeleteCategory = async (id) => {
+    return await categoryModel.findByIdAndDelete (id);
+} 
+
 
 module.exports = {
     dbInsertCategory,
     dbGetCategories,
     dbupdateCategory,
-    dbGetCategoryById
+    dbGetCategoryById,
+    dbDeleteCategory
 }

@@ -1,4 +1,5 @@
-const { dbInsertCategory, dbGetCategories, dbupdateCategory, dbGetCategoryById } = require("../services/category.service");
+const { dbInsertCategory, dbGetCategories, dbupdateCategory, dbGetCategoryById, dbDeleteCategory } = require("../services/category.service");
+const { dbDeleteProduct } = require("../services/product.service");
 
 async function createCategory (req,res){
     const inputData = req.body;
@@ -96,11 +97,33 @@ async function getCategoryById (req,res){
 
 }
 
+async function deleteCategory (req,res){
+    const categoryId = req.params.id;
+
+    try {
+        const data = await dbDeleteCategory (categoryId);
+
+        res.status(200).json ({
+            ok:true,
+            data
+        });
+        
+    } catch (error) {
+        console.error (error);
+        res.status (500).json ({
+            ok: false, 
+            msg: 'Error al eliminar un producto'
+        })
+        
+    }
+}
+
 
 
 module.exports = {
     createCategory,
     getCategories,
     updateCategory,
-    getCategoryById
+    getCategoryById,
+    deleteCategory
 }
