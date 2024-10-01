@@ -1,4 +1,4 @@
-const { dbInsertCart, dbGetCarts } = require("../services/cart.service");
+const { dbInsertCart, dbGetCarts, dbUpdateCart, dbDeleteCart } = require("../services/cart.service");
 
 async function createCart(req,res) {
     const inputData = req.body;
@@ -40,8 +40,32 @@ async function getCarts(req,res) {
 
 }
 
+async function updateCart(req,res) {
+    const cartId = req.params.id;
+    const inputData = req.body;
+
+    const data = await dbUpdateCart(cartId,inputData);
+
+    res.json({
+        msg: 'Actualiza',
+        data
+    });
+}
+
+function deleteCart(req,res) {
+    const cartId = req.params.id;
+
+    const data = dbDeleteCart(cartId);
+
+    res.json({
+        msg: 'Borrar',
+        data
+    });
+}
 
 module.exports = {
     createCart,
-    getCarts
+    getCarts,
+    updateCart,
+    deleteCart
 }
