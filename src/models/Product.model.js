@@ -13,22 +13,15 @@ const ProductSchema = new Schema({
         default: 0,         // Valor por defecto    (regla 2)
         min: 0              // Valor minimo         (regla 3)
     },
-    quantity: {
-        type: Number,
-        default: 1,
-        min: 1
-    },
+  
     category: {
-        type: String,
+        type: Schema.Types.ObjectId,
         required: true
     },
     urlImage: {
         type: String
     },
-    state: {
-        type: Boolean,
-        default: true
-    },
+    
     userId: {
         type: Schema.Types.ObjectId,
         ref: 'users'

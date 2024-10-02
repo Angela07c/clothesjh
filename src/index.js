@@ -15,6 +15,11 @@ app.use( '/api/products', require( './routes/product.routes' ) );   // Middlewar
 app.use( '/api/auth', require( './routes/auth.routes' ) );          // Middleware: Activa solicitudes que comienzan con el prefijo /api/auth
 app.use( '/api/bill', require('./routes/bill.routes'));
 
+app.use( '/api/categories', require ('./routes/categories.routes')); 
+
+app.use('/api/cart',require('./routes/cart.routes'));
+
+
 /** Lanzamos el servidor en puerto indicado 
  * http://localhost:3000
 */
