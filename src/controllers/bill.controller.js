@@ -1,5 +1,3 @@
-// const { dbGetBillProduct } = require ("../services/deliver.service");
-
 const { dbGetBillById, dbInsertBillById } = require("../services/bill.service");
 
 async function getBillById( req, res ) {
@@ -24,8 +22,11 @@ async function getBillById( req, res ) {
 }
 
 async function createBillId( req, res ) {
+    const payload = req.authUser;
     const inputData = req.body;
     console.log( inputData );
+
+    inputData.userId = payload.id;
 
     try {
         const data = await dbInsertBillById( inputData );
