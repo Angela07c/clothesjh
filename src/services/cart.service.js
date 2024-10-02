@@ -15,9 +15,14 @@ const dbUpdateCart = async (id, updateCartPut) => {
 const dbDeleteCart = async ( id ) => {
     return await CartModel.findByIdAndDelete( id );
 }
+
+const dbGetCartById = async (_id) => {
+    return await CartModel.findOne({_id});
+}
 module.exports = {
     dbInsertCart,
     dbGetCarts,
     dbUpdateCart,
-    dbDeleteCart
+    dbDeleteCart,
+    dbGetCartById
 }

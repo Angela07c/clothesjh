@@ -1,4 +1,5 @@
-const { dbInsertCart, dbGetCarts, dbUpdateCart, dbDeleteCart } = require("../services/cart.service");
+const { dbInsertCart, dbGetCarts, dbUpdateCart, dbDeleteCart, dbGetCartById } = require("../services/cart.service");
+
 
 async function createCart(req,res) {
     const inputData = req.body;
@@ -63,9 +64,21 @@ function deleteCart(req,res) {
     });
 }
 
+async function getCartById (req,res) {
+    const cartId = req.params.id;
+
+    const data = await dbGetCartById(cartId);
+
+    res.json({
+        msg: 'Obtiene por id',
+        data
+    });
+}
+
 module.exports = {
     createCart,
     getCarts,
     updateCart,
-    deleteCart
+    deleteCart,
+    getCartById
 }
