@@ -1,6 +1,12 @@
 const CartModel = require("../models/Cart.model")
 
 const dbInsertCart = async (newCart) => {
+    const existingCart = await CartModel.findOne({ userId: newCart.userId, status: 'pending' });
+    
+    if (existingCart) {
+        return existingCart;
+    }
+
     return await CartModel.create(newCart);
 }
 
