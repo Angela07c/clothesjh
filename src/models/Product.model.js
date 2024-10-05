@@ -13,7 +13,7 @@ const ProductSchema = new Schema({
         default: 0,         // Valor por defecto    (regla 2)
         min: 0              // Valor minimo         (regla 3)
     },
-  
+
     category: {
         type: Schema.Types.ObjectId,
         required: true
