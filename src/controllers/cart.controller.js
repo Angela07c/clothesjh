@@ -47,12 +47,21 @@ async function updateCart(req,res) {
     const cartId = req.params.id;
     const inputData = req.body;
 
-    const data = await dbUpdateCart(cartId,inputData);
+    try {
+        const data = await dbUpdateCart(cartId,inputData);
 
-    res.json({
-        msg: 'Actualiza',
-        data
-    });
+        res.status(200).json({
+            ok: true,
+            data
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'Error al actualizar el carrito por ID'
+        })
+    }
+    
 }
 
 async function deleteCart(req,res) {
