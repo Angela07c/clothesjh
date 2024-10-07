@@ -2,11 +2,6 @@ const { Schema, model} = require('mongoose');
 
 const billSchema = new Schema({
 
-    _id: {
-        type: String,
-        required: true
-    },
-
     user: {
         type: Schema.Types.ObjectId,
         ref: 'users'
