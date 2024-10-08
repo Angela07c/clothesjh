@@ -25,7 +25,6 @@ async function createCart(req,res) {
 
 async function getCarts(req,res) {
     
-
     try {
         const data = await dbGetCarts(); 
         res.status(200).json({
@@ -67,24 +66,48 @@ async function updateCart(req,res) {
 async function deleteCart(req,res) {
     const cartId = req.params.id;
 
-    const data = await dbDeleteCart(cartId);
+    try {
+        const data = await dbDeleteCart(cartId);
 
-    res.json({
-        
-        ok: true,
-        data
-    });
+        res.status(200).json({
+            ok: true,
+            data
+        });
+    } 
+    catch (error) {
+        console.error(error);
+        res.status( 500 ).json({
+            ok: false,
+            msg: 'Error al eliminar un car por ID'
+        })
 }
-
-async function getCartById (req,res) {
+}
+async function getCartById ( req,res ) {
     const cartId = req.params.id;
 
-    const data = await dbGetCartById(cartId);
+    try {
+        const data = await dbGetCartById( cartId );
 
-    res.json({
-        msg: 'Obtiene por id',
-        data
-    });
+        if(!data) {
+            return res.status(404).json({
+                ok: false,
+                msg: 'Carrito no encontrado'
+            });
+        }
+
+        res.status(200).json({
+            ok: true,
+            data
+        });
+
+    } 
+    catch (error) {
+        console.error(error);
+        res.status( 500 ).json({
+            ok: false,
+            msg: 'Error al obener un carrito por ID'
+        })
+    }
 }
 
 module.exports = {
