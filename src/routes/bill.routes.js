@@ -6,7 +6,7 @@ const router = express.Router();
 
 
 router.post( "/", authUser, createBillId );
-router.get( "/:id", getBillById);
+router.get( "/:id",authUser, getBillById);
 
 
 module.exports = router;
