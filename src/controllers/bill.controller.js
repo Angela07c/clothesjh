@@ -1,4 +1,4 @@
-const { dbGetBillById, dbInsertBillById } = require("../services/bill.service");
+const { dbGetBillById, dbInsertBillById, dbUpdateBill } = require("../services/bill.service");
 
 async function getBillById( req, res ) {
 
@@ -45,8 +45,30 @@ async function createBillId( req, res ) {
         
     }
 }
+
+async function updateBillPatch( req, res ){
+    const billId= req.params.id;
+    const inputData = req.body;
+
+    try {
+        const data = await dbUpdateBill( billId, inputData );
+
+        res.status( 200 ).json({
+            ok: true,
+            data
+        });
+    }
+    catch ( error ) {
+        console.error( error );
+        res.status( 500 ).json({
+            ok: false,
+            msg: "Error al actualizar la factura"
+        })
+    } 
+}
  
 module.exports = {
     getBillById,
-    createBillId
+    createBillId,
+    updateBillPatch
 }

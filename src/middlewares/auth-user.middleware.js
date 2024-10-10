@@ -5,14 +5,14 @@ function authUser ( req, res, next ) {
     
     // Paso 1: Obtener el Token del header
     const token = req.header( 'X-Token' );
-
+    
     if( ! token ) {
         return res.json({
             ok: false,
             msg: 'Error al obtener el Token'
         });
     }
-
+    
     // Paso 2: Verificar la autenticidad del Token
     const payload = verifyToken( token );
 
