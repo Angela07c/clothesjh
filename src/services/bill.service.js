@@ -14,8 +14,12 @@ const dbInsertBillById = async ( newId ) => {
     return await billModel.create( newId );
 }
 
+const dbDeleteBill = async (id) => {
+    return await billModel.findByIdAndDelete(id);
+}
 
 module.exports = {
     dbGetBillById,
-    dbInsertBillById
+    dbInsertBillById,
+    dbDeleteBill
 };
