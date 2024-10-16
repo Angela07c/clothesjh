@@ -13,6 +13,13 @@ const dbGetBillById = async ( _id ) => {
 const dbInsertBillById = async ( newId ) => {
     return await billModel.create( newId );
 }
+const dbUpdateBill = async ( id, updateBill ) => {
+    return await billModel.findOneAndUpdate(
+        {_id: id },
+        updateBill,
+        { new: true }
+    );
+}
 
 const dbDeleteBill = async (id) => {
     return await billModel.findByIdAndDelete(id);
@@ -21,5 +28,9 @@ const dbDeleteBill = async (id) => {
 module.exports = {
     dbGetBillById,
     dbInsertBillById,
+<<<<<<< HEAD
     dbDeleteBill
+=======
+    dbUpdateBill
+>>>>>>> 11ffa92058e5885e96fc2679e01d686cc329e9b6
 };
