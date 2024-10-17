@@ -28,9 +28,7 @@ const dbDeleteBill = async (id) => {
 module.exports = {
     dbGetBillById,
     dbInsertBillById,
-<<<<<<< HEAD
-    dbDeleteBill
-=======
+    dbDeleteBill,
     dbUpdateBill
->>>>>>> 11ffa92058e5885e96fc2679e01d686cc329e9b6
+
 };

@@ -1,5 +1,3 @@
-
-
 const { dbGetBillById, dbInsertBillById, dbUpdateBill } = require("../services/bill.service");
 
 
@@ -34,7 +32,6 @@ async function createBillId( req, res ) {
     try {
         const data = await dbInsertBillById( inputData );
         console.log( data );
-
         res.status( 201 ).json({
             ok: true,
             data
@@ -49,7 +46,6 @@ async function createBillId( req, res ) {
     }
 }
 
-
 async function deleteBill(req, res) {
     const billId = req.params.id;
 
@@ -61,9 +57,6 @@ async function deleteBill(req, res) {
         msg: 'elimina'
     })
 }
-
-
-
 
 async function updateBillPatch( req, res ){
     const billId= req.params.id;
@@ -85,10 +78,11 @@ async function updateBillPatch( req, res ){
         })
     } 
 }
- 
+
 module.exports = {
     getBillById,
     createBillId,
-    updateBillPatch
+    updateBillPatch,
+    deleteBill
 
 }
