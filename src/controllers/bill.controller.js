@@ -1,4 +1,7 @@
+
+
 const { dbGetBillById, dbInsertBillById, dbUpdateBill } = require("../services/bill.service");
+
 
 async function getBillById( req, res ) {
 
@@ -46,6 +49,22 @@ async function createBillId( req, res ) {
     }
 }
 
+
+async function deleteBill(req, res) {
+    const billId = req.params.id;
+
+    const data = await dbDeleteBill(billId);
+
+    res.json({
+        ok: true,
+        data,
+        msg: 'elimina'
+    })
+}
+
+
+
+
 async function updateBillPatch( req, res ){
     const billId= req.params.id;
     const inputData = req.body;
@@ -71,4 +90,5 @@ module.exports = {
     getBillById,
     createBillId,
     updateBillPatch
+
 }
