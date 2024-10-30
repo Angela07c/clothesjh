@@ -5,21 +5,14 @@ const categorySchema = new Schema ({
         type: String,
         required: true
     },
-    coleccion: {
+    descripcion: {
         type: String,
         required: true
 
-    },
-
-    precio: {
-        type: Number,
-        required: true
-    },
-
-    disponible: {
-        type: String,
-        required: true 
     }
+
+     
+    
 
 
 })
