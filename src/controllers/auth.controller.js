@@ -86,10 +86,11 @@ async function login( req, res ) {
         res.json({
             ok: true,
             token,
-            data: jsonUser
-        });
+            data: payload
 
-    } 
+        } );
+    
+    }
     catch ( error ) {
         console.error( error );
         res.json({
