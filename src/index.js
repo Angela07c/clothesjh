@@ -19,6 +19,7 @@ app.use( '/api/auth', require( './routes/auth.routes' ) );          // Middlewar
 
 
 app.use( '/api/categories', require ('./routes/categories.routes')); 
+app.use ('/api/collection',require ('./routes/collection.routes'));
 
 app.use('/api/cart',require('./routes/cart.routes'));
 

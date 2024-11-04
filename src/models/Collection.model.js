@@ -1,7 +1,7 @@
 const { Schema, model } = require( 'mongoose' );
 
-const categorySchema = new Schema ({
-    categoria:{
+const collectionSchema = new Schema ({
+    coleccion:{
         type: String,
         required: true
     },
@@ -11,9 +11,9 @@ const categorySchema = new Schema ({
 
     }    
 })
-const categoryModel = model (
-    "categorias",
-    categorySchema
+const collectionModel = model (
+    "collecciones",
+    collectionSchema
 );
 
-module.exports = categoryModel; 
+module.exports = collectionModel; 
