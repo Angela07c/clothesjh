@@ -20,7 +20,8 @@ const ProductSchema = new Schema({
     },
 
     collection: {
-        type:String,
+        type: Schema.Types.ObjectId,
+        ref: 'colecciones'
 
     },
 

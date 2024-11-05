@@ -12,7 +12,7 @@ const collectionSchema = new Schema ({
     }    
 })
 const collectionModel = model (
-    "collecciones",
+    "colecciones",
     collectionSchema
 );
 
