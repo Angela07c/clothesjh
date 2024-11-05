@@ -19,7 +19,7 @@ const ProductSchema = new Schema({
         ref: 'categorias'
     },
 
-    collection: {
+    line: {
         type: Schema.Types.ObjectId,
         ref: 'colecciones'
 
