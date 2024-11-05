@@ -1,34 +1,36 @@
-const { dbInsertCategory, dbGetCategories, dbupdateCategory, dbGetCategoryById, dbDeleteCategory } = require("../services/category.service");
-const { dbDeleteProduct } = require("../services/product.service");
+const { dbInsertCollection, dbGetCollection, dbupdateCollection, dbDeleteCollection, dbGetCollectionById } = require("../services/collection.service");
 
-async function createCategory (req,res){
+
+async function createCollection (req,res){
     const inputData = req.body;
 
 
     try {
-        const data = await dbInsertCategory (inputData);
+        const data = await dbInsertCollection (inputData);
         console.log (data);
 
         res.status (201).json ({
             ok: true,
             data
         });
-
-        
+   
         
     } catch (error) {
         console.error (error);
         res.status (500).json ({
             ok: false, 
-            msg: 'Error al crear una categoria'
+            msg: 'Error al crear un catálogo'
         })
         
     }
 }
 
-async function getCategories (req,res) {
+async function getCollection (req,res) {
+
+   
+
     try {
-        const data = await dbGetCategories ();
+        const data = await dbGetCollection ();
 
         res.status (200). json ({
             ok:true,
@@ -39,19 +41,19 @@ async function getCategories (req,res) {
         console.error (error);
         res.status (500).json ({
             ok: false,
-            msg: 'Error al obtener las categorias'
+            msg: 'Error al obtener las collecciones'
         })
         
     }
 
 }
 
-async function updateCategory (req,res){
+async function updateCollection (req,res){
     const categoryId = req.params.id;
     const inputData = req.body;
 
     try {
-        const data = await dbupdateCategory (categoryId, inputData);
+        const data = await dbupdateCollection (categoryId, inputData);
         
         res.status (200).json ({
             ok: true,
@@ -62,23 +64,23 @@ async function updateCategory (req,res){
         console.error (error);
         res.status (500).json ({
             ok:false,
-            msg: 'Error al actualizar un producto por ID'
+            msg: 'Error al actualizar una coleccion por ID'
         })
         
     }
 }
 
-async function getCategoryById (req,res){
-    const CategoryId = req.params.id;
+async function getCollectionById (req,res){
+    const collectionId = req.params.id;
 
     try {
-        const data = await dbGetCategoryById( CategoryId );
+        const data = await dbGetCollectionById( collectionId );
 
         /** Valida si el producto NO fue encontrado */
         if( ! data ) {
             res.status( 404 ).json({
                 ok: false,
-                msg: 'Categoria no encontrada'
+                msg: 'Collection no encontrada'
             });
         } 
 
@@ -91,17 +93,17 @@ async function getCategoryById (req,res){
         console.error( error );
         res.status( 500 ).json({
             ok: false,
-            msg: 'Error al obtener una categoria por ID'
+            msg: 'Error al obtener Collection por ID'
         })  
     }
 
 }
 
-async function deleteCategory (req,res){
-    const categoryId = req.params.id;
+async function deleteCollection (req,res){
+    const collectionId = req.params.id;
 
     try {
-        const data = await dbDeleteCategory (categoryId);
+        const data = await dbDeleteCollection (collectionId);
 
         res.status(200).json ({
             ok:true,
@@ -112,7 +114,7 @@ async function deleteCategory (req,res){
         console.error (error);
         res.status (500).json ({
             ok: false, 
-            msg: 'Error al eliminar un producto'
+            msg: 'Error al eliminar collection'
         })
         
     }
@@ -121,9 +123,9 @@ async function deleteCategory (req,res){
 
 
 module.exports = {
-    createCategory,
-    getCategories,
-    updateCategory,
-    getCategoryById,
-    deleteCategory
+    createCollection,
+    getCollection,
+    updateCollection,
+    getCollectionById,
+    deleteCollection
 }

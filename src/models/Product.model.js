@@ -20,7 +20,8 @@ const ProductSchema = new Schema({
     },
 
     collection: {
-        type:String,
+        type: Schema.Types.ObjectId,
+        ref: 'colecciones'
 
     },
 
@@ -37,6 +38,11 @@ const ProductSchema = new Schema({
     userId: {
         type: Schema.Types.ObjectId,
         ref: 'users'
+    },
+
+    prominent: {
+        type: Boolean,
+        default: false
     }
 }, {
     timestamps: true        // Agrega campos de fecha: creacion y actualizacion del documento
